@@ -1,0 +1,100 @@
+Perfeito! Vamos conectar os **requisitos funcionais e não funcionais** ao **DER/MER** do jogo. Vou estruturar de forma que fique claro **quais entidades são responsáveis por quais requisitos**, pronto pra documentação de projeto.
+
+---
+
+# **1. Entidades e Requisitos Associados**
+
+| Entidade      | Atributos / Relações                           | RF / RNF atendidos                   |
+| ------------- | ---------------------------------------------- | ------------------------------------ |
+| **Player**    | x, y, hp, lives, fireRate, upgradesAtivos      | RF1, RF2, RF6, RF7, RF9, RNF8, RNF10 |
+| **Bullet**    | x, y, dx, dy, damage, ownerId                  | RF5, RF17, RNF2, RNF3, RNF10         |
+| **Enemy**     | x, y, hp, type, speed, pattern                 | RF3, RF4, RF10, RF15, RNF2, RNF3     |
+| **Wave**      | id, waveNumber, enemiesList, spawnPattern      | RF3, RF15, RF16, RNF6                |
+| **Upgrade**   | id, name, type, value, unlockedWave            | RF6, RF7, RF12, RNF6, RNF9           |
+| **GameState** | currentWave, score, isGameOver, activeUpgrades | RF8, RF16, RF17, RNF11               |
+
+---
+
+# **2. DER Atualizado com Requisitos**
+
+```
++----------------+       +----------------+
+|    Player      | 1 --- N |     Bullet    |
+|----------------|         |----------------|
+| id             |         | id             |
+| x, y           |         | x, y           |
+| hp, lives      |         | dx, dy         |
+| fireRate       |         | damage         |
+| upgradesAtivos |         | ownerId        |
++----------------+         +----------------+
+ RF1,RF2,RF6,RF7,RF9  RF5,RF17,RNF2,RNF3,RNF10
+
++----------------+       +----------------+
+|    Enemy       | 1 --- N |     Bullet    |
+|----------------|         |----------------|
+| id             |         | id             |
+| x, y           |         | dx, dy         |
+| hp             |         | damage         |
+| type           |         | ownerId        |
+| speed, pattern |         +----------------+
++----------------+
+RF3,RF4,RF10,RF15   RNF2,RNF3
+
++----------------+       +----------------+
+|     Wave       | 1 --- N |    Enemy      |
+|----------------|         |----------------|
+| id             |         | id             |
+| waveNumber     |         | x, y           |
+| spawnPattern   |         | hp             |
+| enemiesList    |         | type           |
++----------------+         +----------------+
+RF3,RF15,RF16   RNF6
+
++----------------+       +----------------+
+|    Upgrade     | N --- N |    Player     |
+|----------------|         |----------------|
+| id             |         | id             |
+| name           |         | x, y           |
+| type           |         | hp, lives      |
+| value          |         | fireRate       |
+| unlockedWave   |         | upgradesAtivos |
++----------------+         +----------------+
+RF6,RF7,RF12   RNF6,RNF9
+
++----------------+
+|  GameState     |
+|----------------|
+| currentWave    |
+| score          |
+| isGameOver     |
+| activeUpgrades |
++----------------+
+RF8,RF16,RF17   RNF11
+```
+
+---
+
+# **3. Observações e Melhorias**
+
+1. **Clareza na responsabilidade:**
+
+   * Cada RF/RNF está mapeado a entidades específicas; isso ajuda no desenvolvimento modular e testes unitários.
+
+2. **Extensibilidade:**
+
+   * Adicionar novos upgrades ou inimigos exige apenas criar uma nova instância da entidade correspondente e configurar spawn/padrões.
+
+3. **Mínimo para MVP:**
+
+   * Player + Bullet + Enemy + Wave + Upgrade + GameState → núcleo suficiente.
+   * RF e RNF de média prioridade (feedback visual, efeitos extras) podem ser adicionados depois.
+
+4. **Facilidade de testes:**
+
+   * É possível simular GameState e waves em C++ sem render, facilitando debug e ajustes de balanceamento.
+
+---
+
+Se você quiser, posso **gerar uma versão gráfica do DER**, com caixas, linhas 1:N e N:N, já mostrando **quais RF/RNF cada entidade atende**, pronta para inserir no documento de projeto ou apresentação.
+
+Quer que eu faça isso?

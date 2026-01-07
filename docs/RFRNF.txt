@@ -1,0 +1,56 @@
+Perfeito! Aqui está a **versão organizada em tabela de requisitos funcionais e não funcionais**, pronta para documento de projeto, com **ID, descrição e prioridade**.
+
+---
+
+# **Tabela de Requisitos Funcionais (RF)**
+
+| ID   | Requisito Funcional                                                                                              | Prioridade |
+| ---- | ---------------------------------------------------------------------------------------------------------------- | ---------- |
+| RF1  | O player deve se mover horizontalmente na extremidade inferior da tela.                                          | Alta       |
+| RF2  | O player deve disparar projéteis simples ou múltiplos (single shot / spread).                                    | Alta       |
+| RF3  | O jogo deve gerar inimigos em waves crescentes, com tipos distintos (A, B, C / mini-boss).                       | Alta       |
+| RF4  | Cada inimigo deve ter HP, padrão de movimento e, quando aplicável, capacidade de disparar.                       | Alta       |
+| RF5  | Bullets devem colidir com inimigos e aplicar dano; inimigos morrem quando HP = 0.                                | Alta       |
+| RF6  | O jogador deve receber upgrades desbloqueados progressivamente conforme a wave atual.                            | Alta       |
+| RF7  | O jogador deve poder coletar upgrades e estes devem afetar atributos do player (fireRate, spread, shield, etc.). | Alta       |
+| RF8  | O jogo deve apresentar contadores de score e wave atual.                                                         | Média      |
+| RF9  | O jogo deve detectar game over quando HP do player = 0.                                                          | Alta       |
+| RF10 | Mini-bosses devem aparecer em waves específicas e ter padrões de ataque diferenciados.                           | Média      |
+| RF11 | Exibir barra de vida do player.                                                                                  | Média      |
+| RF12 | Indicar upgrades ativos de forma visual (ícones, cores, etc.).                                                   | Média      |
+| RF13 | Indicar visualmente dano sofrido por player ou inimigos (flash ou animação simples).                             | Média      |
+| RF14 | Mostrar efeitos básicos de tiros, colisões e explosões.                                                          | Média      |
+| RF15 | Waves devem aumentar dificuldade de forma previsível (mais inimigos, HP maior, velocidade maior).                | Alta       |
+| RF16 | GameState deve armazenar player, waves, bullets e upgrades ativos.                                               | Alta       |
+| RF17 | Upgrades e bullets devem respeitar limites de quantidade na tela (performance).                                  | Alta       |
+
+---
+
+# **Tabela de Requisitos Não Funcionais (RNF)**
+
+| ID    | Requisito Não Funcional                                                                                              | Prioridade |
+| ----- | -------------------------------------------------------------------------------------------------------------------- | ---------- |
+| RNF1  | Manter >=30 FPS em dispositivos móveis e PCs de baixa/média potência.                                                | Alta       |
+| RNF2  | Limitar número de inimigos ativos na tela (~10–15 simultâneos).                                                      | Alta       |
+| RNF3  | Bullets e inimigos devem ser gerenciados via pool para reduzir overhead.                                             | Média      |
+| RNF4  | Implementar em C++ compilável para Windows, Linux e Android.                                                         | Alta       |
+| RNF5  | Bibliotecas gráficas devem ser portáveis (SDL2, OpenGL ES ou Godot).                                                 | Alta       |
+| RNF6  | Arquitetura deve permitir fácil adição de novos inimigos e upgrades.                                                 | Média      |
+| RNF7  | Separar lógica de jogo (player, waves, upgrades) da renderização e input.                                            | Alta       |
+| RNF8  | Controles responsivos e intuitivos (touch para Android, teclado/mouse para PC).                                      | Alta       |
+| RNF9  | Feedback visual e sonoro claro em eventos importantes (dano, upgrade, wave completa).                                | Média      |
+| RNF10 | Colisões e dano devem ser calculados corretamente; bullets só atravessam inimigos com upgrade específico (piercing). | Alta       |
+| RNF11 | GameState deve ser consistente entre frames; waves e upgrades não podem ser perdidos.                                | Alta       |
+
+---
+
+💡 **Notas de implementação:**
+
+* Prioridade **Alta** → essencial para MVP; precisa estar implementada primeiro.
+* Prioridade **Média** → adiciona experiência, estética e feedback, mas pode ser implementada depois do núcleo do jogo.
+
+---
+
+Se você quiser, posso gerar **uma versão visual do MER/DER ligada a esses requisitos**, mostrando **como Player, Wave, Enemy, Bullet e Upgrade se relacionam** e quais RFs/RNFs cada entidade atende. Isso já deixa o documento de projeto completo pra desenvolvimento em C++.
+
+Quer que eu faça isso?
